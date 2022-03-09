@@ -63,9 +63,9 @@ var model = {    //keeps track of the ships: where they are, if they've been hit
 
 		if (direction === 1) {
 			row = Math.floor(Math.random() * this.boardSize);
-			col = Math.floor(Math.random() * (this.boardSize - 3));
+			col = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
 		} else {
-			row = Math.floor(Math.random() * (this.boardSize - 3));
+			row = Math.floor(Math.random() * (this.boardSize - this.shipLength + 1));
 			col= Math.floor(Math.random() * this.boardSize);
 		}
 
@@ -118,7 +118,7 @@ var controller = {  //glues everything together, including the playes input and 
 			this.guesses++;  //adds one to the guesses property
 			var hit = model.fire(location);  //we pass the row and column in the form of a string to the model's fire method
 			if (hit && model.shipsSunk === model.numShips) {  //if the guess was a hit and the num of ships that are sunk is = num of ships in the game, then show the player a message that they've sunk all the ships
-				view.displayMessage("You sank my battleship, in " + this.guessees + " guesses");  //shows the player the total num of guesses it took to sink the ship
+				view.displayMessage("You sank my battleship, in " + this.guesses + " guesses");  //shows the player the total num of guesses it took to sink the ship
 			}
 		}
 	}	
